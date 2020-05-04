@@ -1,0 +1,79 @@
+{
+  "name": "reimage",
+  "version": "1.0.0",
+  "description": "React library for comfortable and ease work with images.",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "test": "jest --config jestconfig.json",
+    "coverage": "jest --coverage",
+    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\" \"src/**/*.tsx\"",
+    "lint": "tslint -p tsconfig.json",
+    "build": "tsc",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test && npm run lint",
+    "preversion": "npm run lint",
+    "version": "npm run format && git add -A src",
+    "postversion": "git push && git push --tags",
+    "release": "release-it"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VetBlack/Reimage.git"
+  },
+  "keywords": [
+    "react",
+    "image",
+    "images",
+    "picture",
+    "lazy",
+    "load"
+  ],
+  "author": "Vitalii Cherniavskyi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/VetBlack/Reimage/issues"
+  },
+  "homepage": "https://github.com/VetBlack/Reimage#readme",
+  "dependencies": {
+    "intersection-observer-polyfill": "^0.1.0",
+    "node-sass": "^4.13.1"
+  },
+  "peerDependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 10 chrome version",
+      "last 10 firefox version",
+      "last 2 safari version",
+      "last 1 ie version"
+    ]
+  },
+  "devDependencies": {
+    "@types/jest": "^24.9.1",
+    "@types/node": "^12.0.0",
+    "@types/react": "^16.9.34",
+    "@types/react-dom": "^16.9.7",
+    "@typescript-eslint/eslint-plugin": "^2.19.0",
+    "@typescript-eslint/parser": "^2.19.0",
+    "eslint": "^6.8.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-react": "^7.18.3",
+    "jest": "^25.4.0",
+    "prettier": "^1.19.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "release-it": "^13.5.8",
+    "ts-jest": "^25.4.0",
+    "tslint": "^6.1.2",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^3.8.3"
+  }
+}
