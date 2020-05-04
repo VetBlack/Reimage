@@ -10,7 +10,7 @@ import {
   generateFilter,
   checkObserverSupport,
 } from '../../utils/main';
-import './image.style.css';
+import './image.style.scss';
 
 class Reimage extends React.Component<
   ImagePropsInterface,

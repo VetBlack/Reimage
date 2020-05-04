@@ -9,7 +9,8 @@
     "coverage": "jest --coverage",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\" \"src/**/*.tsx\"",
     "lint": "tslint -p tsconfig.json",
-    "build": "tsc",
+    "build": "rollup -c",
+    "start": "rollup -c -w",
     "prepare": "npm run build",
     "prepublishOnly": "npm test && npm run lint",
     "preversion": "npm run lint",
@@ -39,8 +40,8 @@
     "intersection-observer-polyfill": "^0.1.0"
   },
   "peerDependencies": {
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0"
   },
   "browserslist": {
     "production": [
@@ -62,6 +63,8 @@
     "@types/react-dom": "^16.9.7",
     "@typescript-eslint/eslint-plugin": "^2.19.0",
     "@typescript-eslint/parser": "^2.19.0",
+    "babel-core": "^6.26.3",
+    "babel-runtime": "^6.26.0",
     "eslint": "^6.8.0",
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-react": "^7.18.3",
@@ -70,6 +73,9 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "release-it": "^13.5.8",
+    "rollup": "^2.7.6",
+    "rollup-plugin-sass": "^1.2.2",
+    "rollup-plugin-typescript2": "^0.27.0",
     "ts-jest": "^25.4.0",
     "tslint": "^6.1.2",
     "tslint-config-prettier": "^1.18.0",
