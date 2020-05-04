@@ -1,6 +1,6 @@
 # Reimage
 
-[Reimage docs in russian]('./README_RU.md')
+[Reimage docs in russian]('https://github.com/VetBlack/Reimage/blob/master/README_RU.md')
 
 **Reimage** is a react library for comfortable working with images and improvement of user experience. Basically **Reimage** is all you need,because it supports all default image attributes, and provides many new useful features such as:
 
@@ -10,7 +10,7 @@
 - Fallback components, spinners support on image loading,
 - Styling and customization, 
 
-**Reimage** can be used in third-party sliders, galleries or separate. 
+**Reimage** also can be used in third-party sliders, galleries etc. 
 
 >**Caution:** Intersection observer API used in **Reimage** check if your target browsers [support it](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API#Browser_compatibility) 
 
