@@ -4,7 +4,6 @@ export interface ImagePropsInterface extends Partial<HTMLImageElement> {
   src: any;
   classNames?: string;
 
-
   minifiedSrc?: string;
   fallbackComponent?: reactNode;
   fallBackWrapperStyles?: object;
