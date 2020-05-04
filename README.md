@@ -1,6 +1,6 @@
 # Reimage
 
-[Reimage docs in russian]('https://github.com/VetBlack/Reimage/blob/master/README_RU.md')
+[Reimage docs in russian]('/README_RU.md')
 
 **Reimage** is a react library for comfortable working with images and improvement of user experience. Basically **Reimage** is all you need,because it supports all default image attributes, and provides many new useful features such as:
 
