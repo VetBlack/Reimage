@@ -26,7 +26,7 @@ describe('Tests for [UTILS] functions', () => {
   });
   it('[generateFilter] should return [output]', () => {
     const result = generateFilter(1, false);
-    const output = 'grayscale(1) ';
+    const output = 'grayscale(1)';
     expect(result).toEqual(output);
   });
   it('[generateFilter] should return [output] (another)', () => {

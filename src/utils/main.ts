@@ -25,7 +25,9 @@ export const generateFilter = (
   grayscale: number | undefined,
   blur: boolean,
 ): string =>
-  `${grayscale && `grayscale(${grayscale})`} ${blur ? `blur(5px)` : ``}`;
+  `${grayscale ? `grayscale(${grayscale})` : ``} ${
+    blur ? `blur(5px)` : ``
+  }`.trim();
 
 export const checkObserverSupport = (): boolean => {
   const observer: string = 'IntersectionObserver';
