@@ -1,5 +1,16 @@
 # Reimage
 
+<p align="center">
+ <img alt="issues" src="https://img.shields.io/github/license/VetBlack/Reimage" />
+ <img alt="issues" src="https://img.shields.io/github/languages/top/Vetblack/Reimage" />
+ <img alt="issues" src="https://img.shields.io/snyk/vulnerabilities/npm/reimage" />
+ <img alt="issues" src="https://img.shields.io/bundlephobia/min/reimage" />
+ <img alt="issues" src="https://img.shields.io/github/stars/VetBlack/Reimage" />
+ <img alt="issues" src="https://img.shields.io/github/forks/VetBlack/Reimage" />
+ <img alt="issues" src="https://img.shields.io/github/issues/VetBlack/Reimage" />
+ <img alt="issues" src="https://img.shields.io/twitter/url?style=social" />
+</p>
+
 [Reimage docs in russian](README_RU.md)
 
 **Reimage** is a react library for comfortable working with images and improvement of user experience. Basically **Reimage** is all you need,because it supports all default image attributes, and provides many new useful features such as:
@@ -59,6 +70,10 @@ export default function Example() {
 }
   
 ```
+
+## Demo
+
+Live demo available [here](https://codesandbox.io/s/hardcore-flower-l7kjp?file=/src/App.js)
 
 ## Cookbook
 
@@ -141,8 +156,8 @@ export default function HandleErrors() {
     classNames="ClassName1, ClassName2, ClassNameN"
     wrapper="div"
     wrapperClass="customWrapperClassName"
-    altAsError={true}                                     (1)
-    errorImage={errorImage}                               (2)
+    errorImage={errorImage}                               (1)
+    altAsError={true}                                     (2)
   />
   )
 }

@@ -1,5 +1,16 @@
 # Reimage
 
+<p align="center">
+ <img alt="issues" src="https://img.shields.io/github/license/VetBlack/Reimage" />
+ <img alt="issues" src="https://img.shields.io/github/languages/top/Vetblack/Reimage" />
+ <img alt="issues" src="https://img.shields.io/snyk/vulnerabilities/npm/reimage" />
+ <img alt="issues" src="https://img.shields.io/bundlephobia/min/reimage" />
+ <img alt="issues" src="https://img.shields.io/github/stars/VetBlack/Reimage" />
+ <img alt="issues" src="https://img.shields.io/github/forks/VetBlack/Reimage" />
+ <img alt="issues" src="https://img.shields.io/github/issues/VetBlack/Reimage" />
+ <img alt="issues" src="https://img.shields.io/twitter/url?style=social" />
+</p>
+
 **Reimage** это React библиотека для комфортной работы с изображениями и улучшения UX в ваших проектах. Если в вашем проекте используются изображения то **Reimage** это все что вам нужно для работы с ними. **Reimage** предлагает следующий список возможностей:
 
 - Ленивая загрузка изображений,
@@ -56,6 +67,12 @@ export default function Example() {
 }
   
 ```
+
+
+
+## Демо
+
+Демо можно найти [здесь](https://codesandbox.io/s/hardcore-flower-l7kjp?file=/src/App.js)
 
 ## Рецепты
 
@@ -138,8 +155,8 @@ export default function HandleErrors() {
     classNames="ClassName1, ClassName2, ClassNameN"
     wrapper="div"
     wrapperClass="customWrapperClassName"
-    altAsError={true}                                     (1)
-    errorImage={errorImage}                               (2)
+    errorImage={errorImage}                               (1)
+    altAsError={true}                                     (2)
   />
   )
 }
