@@ -8,7 +8,7 @@
  <img alt="issues" src="https://img.shields.io/github/stars/VetBlack/Reimage" />
  <img alt="issues" src="https://img.shields.io/github/forks/VetBlack/Reimage" />
  <img alt="issues" src="https://img.shields.io/github/issues/VetBlack/Reimage" />
- <img alt="issues" src="https://img.shields.io/twitter/url?style=social" />
+ <img alt="issues" src="https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Fgithub.com%2FVetBlack%2FReimage" />
 </p>
 
 **Reimage** это React библиотека для комфортной работы с изображениями и улучшения UX в ваших проектах. Если в вашем проекте используются изображения то **Reimage** это все что вам нужно для работы с ними. **Reimage** предлагает следующий список возможностей:
