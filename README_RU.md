@@ -68,8 +68,6 @@ export default function Example() {
   
 ```
 
-
-
 ## Демо
 
 Демо можно найти [здесь](https://codesandbox.io/s/hardcore-flower-l7kjp?file=/src/App.js)
