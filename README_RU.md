@@ -218,7 +218,7 @@ Prop name               | Type                                           | Detai
 
 ## Зависимости
 
-**Reimage** имеет одну зависимость от `intersection-observer-polyfill` 
+**Reimage** не имеет внешних зависимостей. 
 
 ## Проблемы
 

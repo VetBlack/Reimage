@@ -221,7 +221,7 @@ In addition to provided props you can use default image attributes such as alt, 
 
 ## Dependencies
 
-**Reimage** have only one dependence from `intersection-observer-polyfill` 
+**Reimage** has no external dependencies.
 
 ## Issues
 

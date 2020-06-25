@@ -1,5 +1,4 @@
 import React from 'react';
-import ObserverPolyfill from 'intersection-observer-polyfill';
 import { reactNode } from '../interfaces/types';
 import { ImageComponentState } from '../interfaces/image.state.interface';
 import { ImagePropsInterface } from '../interfaces/image.props.interface';
@@ -15,7 +14,7 @@ import './image.style.scss';
 class Reimage extends React.Component<
   ImagePropsInterface,
   ImageComponentState
-> {
+  > {
   constructor(
     public props: any,
     public observer: IntersectionObserver,
@@ -73,7 +72,6 @@ class Reimage extends React.Component<
     };
 
     if (checkObserverSupport()) {
-      // native observer
       this.observer = new IntersectionObserver(entries => {
         entries.forEach(e => {
           this.onIntersection.call(this, e, this.observer);
@@ -85,19 +83,7 @@ class Reimage extends React.Component<
         this.observer.observe(current);
       }
     } else {
-      // polyfill observer
-      this.observer = new ObserverPolyfill(
-        (entries: [IntersectionObserverEntry]) => {
-          entries.forEach((e: IntersectionObserverEntry) => {
-            this.onIntersection.call(this, e, this.observer);
-          });
-        },
-        options,
-      );
-      const { current } = this.currentImage;
-      if (current) {
-        this.observer.observe(current);
-      }
+      throw new Error('Your browser doesnt support Intersection Observer API');
     }
   }
 

@@ -1,3 +1,3 @@
-import { Reimage } from './components/Image';
+import { Reimage } from './components/image';
 
 export { Reimage };
