@@ -14,7 +14,7 @@ import './image.style.scss';
 class Reimage extends React.Component<
   ImagePropsInterface,
   ImageComponentState
-  > {
+> {
   constructor(
     public props: any,
     public observer: IntersectionObserver,

@@ -1,6 +1,6 @@
 {
   "name": "reimage",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "React library for comfortable and ease work with images.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
