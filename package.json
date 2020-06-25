@@ -6,7 +6,6 @@
   "types": "lib/index.d.ts",
   "scripts": {
     "test": "jest --config jestconfig.json",
-    "ver": "version patch",
     "coverage": "jest --coverage",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\" \"src/**/*.tsx\"",
     "lint": "tslint -p tsconfig.json",
