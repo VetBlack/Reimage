@@ -33,7 +33,7 @@ import './image.style.scss';
 class Reimage extends React.Component<
   ImagePropsInterface,
   ImageComponentState
-  > {
+> {
   constructor(
     public props: ImagePropsInterface,
     public observer: IntersectionObserver,
@@ -120,11 +120,7 @@ class Reimage extends React.Component<
     fallBackWrapperStyles: object | undefined,
   ): JSX.Element {
     return (
-      <div
-        style={
-          fallBackWrapperStyles || STYLES.fallBackDefault
-        }
-      >
+      <div style={fallBackWrapperStyles || STYLES.fallBackDefault}>
         {fallbackComponent}
       </div>
     );

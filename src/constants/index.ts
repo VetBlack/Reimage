@@ -8,7 +8,7 @@ export const STYLES = {
     zIndex: 2,
     left: '35%',
     top: '35%',
-  }
+  },
 };
 export const CLASS_NAMES = {
   transparent_default: 'transparent-default',
