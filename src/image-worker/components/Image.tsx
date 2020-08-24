@@ -2,7 +2,9 @@ import React from 'react';
 import { reactNode } from '../interfaces/types';
 import { ImageComponentState } from '../interfaces/image.state.interface';
 import { ImagePropsInterface } from '../interfaces/image.props.interface';
+import { PartialRefObject } from '../interfaces/interfaces';
 import { checkElementType } from '../../utils/main';
+import { ERRORS, STYLES, CLASS_NAMES } from '../../constants/index';
 import {
   generateClassName,
   chooseSrc,
@@ -11,18 +13,35 @@ import {
 } from '../../utils/main';
 import './image.style.scss';
 
+/**
+ * @param {any} src - source of image, required.
+ * @param {string} classNames - list of classNames.
+ * @param {string} minifiedSrc - source of minified image.
+ * @param {any} fallbackComponent - component to show when loading img.
+ * @param {object} fallBackWrapperStyles - styles for fallBackComponent.
+ * @param {string} backDropColor - color for image backdrop.
+ * @param {object} backDropStyles - styles for image backdrop.
+ * @param {any} wrapper - wrapper component for image.
+ * @param {string} wrapperClass - className for wrapper component.
+ * @param {string} errorImage - src for image showed when error occurs.
+ * @param {boolean} altAsError - use text from alt attribute as error message.
+ * @param {number} grayscale - make image grayscale, values from 0 to 1.
+ * @param {string} root - root element for intersection observer API.
+ * @param {string} rootMargin - root margin for intersection observer API.
+ * @param {string} threshold - threshold for intersection observer API.*
+ */
+
 class Reimage extends React.Component<
   ImagePropsInterface,
   ImageComponentState
 > {
   constructor(
-    public props: any,
+    public props: ImagePropsInterface,
     public observer: IntersectionObserver,
     public currentImage: React.RefObject<HTMLImageElement>,
-    public fallbackContainer: React.RefObject<HTMLDivElement>,
+    public fallbackContainer: React.RefObject<PartialRefObject>,
   ) {
     super(props);
-
     this.state = {
       isLoaded: false,
       isError: false,
@@ -45,7 +64,7 @@ class Reimage extends React.Component<
 
       target.onload = () => {
         target.style.filter = generateFilter(grayscale, false);
-        target.classList.remove('transparent_default');
+        target.classList.remove(CLASS_NAMES.transparent_default);
         target.removeAttribute('data-src');
         this.setState({ isLoaded: true });
       };
@@ -65,16 +84,11 @@ class Reimage extends React.Component<
 
   public componentDidMount(): void {
     const { threshold, root, rootMargin } = this.props;
-    const options = {
-      root: root || null,
-      rootMargin: rootMargin || '0px 0px 50px 0px',
-      threshold,
-    };
-
+    const options: IntersectionObserverInit = { threshold, root, rootMargin };
     if (checkObserverSupport()) {
       this.observer = new IntersectionObserver(entries => {
-        entries.forEach(e => {
-          this.onIntersection.call(this, e, this.observer);
+        entries.forEach(entree => {
+          this.onIntersection.call(this, entree, this.observer);
         });
       }, options);
 
@@ -83,19 +97,19 @@ class Reimage extends React.Component<
         this.observer.observe(current);
       }
     } else {
-      throw new Error('Your browser doesnt support Intersection Observer API');
+      throw new Error(ERRORS.support);
     }
   }
 
   public imageConstructor(ref: object, attributes: object): React.ReactElement {
     const { wrapper, wrapperClass } = this.props;
-
     const img = React.createElement('img', { ref, ...attributes });
 
     if (checkElementType(wrapper)) {
       const wrapped = React.createElement(
-        wrapper,
-        { className: wrapperClass },
+        wrapper!,
+        // { className: wrapperClass },
+        {},
         img,
       );
       return wrapped;
@@ -104,8 +118,8 @@ class Reimage extends React.Component<
   }
 
   public fallBackConstructor(
-    fallbackComponent: reactNode,
-    fallBackWrapperStyles: object,
+    fallbackComponent: reactNode | undefined,
+    fallBackWrapperStyles: object | undefined,
   ): JSX.Element {
     return (
       <div
@@ -162,7 +176,7 @@ class Reimage extends React.Component<
     const className =
       classNames &&
       generateClassName(
-        [`${!blured ? `transparent_default` : ``}`, classNames],
+        [`${!blured ? CLASS_NAMES.transparent_default : ``}`, classNames],
         ' ',
       );
     const attributes = {
@@ -182,8 +196,8 @@ class Reimage extends React.Component<
           height,
           ...backDropStyles,
         }}
-        className="backdrop_default"
-        ref={this.fallbackContainer}
+        className={CLASS_NAMES.backdrop_default}
+        // ref={this.fallbackContainer}
       >
         {!isLoaded &&
           this.fallBackConstructor(fallbackComponent, fallBackWrapperStyles)}

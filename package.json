@@ -36,9 +36,6 @@
     "url": "https://github.com/VetBlack/Reimage/issues"
   },
   "homepage": "https://github.com/VetBlack/Reimage#readme",
-  "dependencies": {
-    "intersection-observer-polyfill": "^0.1.0"
-  },
   "peerDependencies": {
     "react": "^16.11.0",
     "react-dom": "^16.11.0"
@@ -72,7 +69,7 @@
     "prettier": "^1.19.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "release-it": "^13.5.8",
+    "release-it": "^13.6.9",
     "rollup": "^2.7.6",
     "rollup-plugin-sass": "^1.2.2",
     "rollup-plugin-typescript2": "^0.27.0",

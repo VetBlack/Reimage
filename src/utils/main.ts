@@ -13,7 +13,7 @@ export const generateClassName = (
 ): string => [...classNames].filter(el => el !== false).join(separator);
 
 export const chooseSrc = (
-  minSrc: string,
+  minSrc: string | undefined,
 ): { currentSrc: string; blured: boolean } => {
   if (minSrc) {
     return { currentSrc: minSrc, blured: true };
