@@ -3,6 +3,12 @@ export const ERRORS = {
 };
 export const STYLES = {
   defaultRootMargin: '0px 0px 50px 0px',
+  fallBackDefault: {
+    position: 'absolute',
+    zIndex: 2,
+    left: '35%',
+    top: '35%',
+  }
 };
 export const CLASS_NAMES = {
   transparent_default: 'transparent_default',

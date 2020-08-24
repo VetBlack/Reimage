@@ -2,7 +2,6 @@ import React from 'react';
 import { reactNode } from '../interfaces/types';
 import { ImageComponentState } from '../interfaces/image.state.interface';
 import { ImagePropsInterface } from '../interfaces/image.props.interface';
-import { PartialRefObject } from '../interfaces/interfaces';
 import { checkElementType } from '../../utils/main';
 import { ERRORS, STYLES, CLASS_NAMES } from '../../constants/index';
 import {
@@ -28,18 +27,18 @@ import './image.style.scss';
  * @param {number} grayscale - make image grayscale, values from 0 to 1.
  * @param {string} root - root element for intersection observer API.
  * @param {string} rootMargin - root margin for intersection observer API.
- * @param {string} threshold - threshold for intersection observer API.*
+ * @param {string} threshold - threshold for intersection observer API.
  */
 
 class Reimage extends React.Component<
   ImagePropsInterface,
   ImageComponentState
-> {
+  > {
   constructor(
     public props: ImagePropsInterface,
     public observer: IntersectionObserver,
     public currentImage: React.RefObject<HTMLImageElement>,
-    public fallbackContainer: React.RefObject<PartialRefObject>,
+    public fallbackContainer: React.RefObject<HTMLDivElement>,
   ) {
     super(props);
     this.state = {
@@ -74,7 +73,7 @@ class Reimage extends React.Component<
           return (target.src = errorImage);
         } else if (altAsError) {
           if (fallbackContainer.current) {
-            fallbackContainer.current.innerText = alt;
+            fallbackContainer.current.innerText = alt!;
           }
         }
         return (target.style.display = 'none');
@@ -107,8 +106,8 @@ class Reimage extends React.Component<
 
     if (checkElementType(wrapper)) {
       const wrapped = React.createElement(
-        wrapper!,
-        // { className: wrapperClass },
+        wrapper as any,
+        { className: wrapperClass },
         {},
         img,
       );
@@ -124,12 +123,7 @@ class Reimage extends React.Component<
     return (
       <div
         style={
-          fallBackWrapperStyles || {
-            position: 'absolute',
-            zIndex: 2,
-            left: '35%',
-            top: '35%',
-          }
+          fallBackWrapperStyles || STYLES.fallBackDefault
         }
       >
         {fallbackComponent}
@@ -197,7 +191,7 @@ class Reimage extends React.Component<
           ...backDropStyles,
         }}
         className={CLASS_NAMES.backdrop_default}
-        // ref={this.fallbackContainer}
+        ref={this.fallbackContainer}
       >
         {!isLoaded &&
           this.fallBackConstructor(fallbackComponent, fallBackWrapperStyles)}
