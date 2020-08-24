@@ -1,6 +1,6 @@
 {
   "name": "reimage",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "React library for comfortable and ease work with images.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -36,11 +36,8 @@
     "url": "https://github.com/VetBlack/Reimage/issues"
   },
   "homepage": "https://github.com/VetBlack/Reimage#readme",
-  "dependencies": {
-    "intersection-observer-polyfill": "^0.1.0"
-  },
   "peerDependencies": {
-    "react": "^16.11.0",
+    "react": "^16.13.1",
     "react-dom": "^16.11.0"
   },
   "browserslist": {
@@ -59,8 +56,8 @@
   "devDependencies": {
     "@types/jest": "^24.9.1",
     "@types/node": "^12.0.0",
-    "@types/react": "^16.9.34",
-    "@types/react-dom": "^16.9.7",
+    "@types/react": "^16.9.46",
+    "@types/react-dom": "^16.9.8",
     "@typescript-eslint/eslint-plugin": "^2.19.0",
     "@typescript-eslint/parser": "^2.19.0",
     "babel-core": "^6.26.3",
@@ -72,7 +69,7 @@
     "prettier": "^1.19.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "release-it": "^13.5.8",
+    "release-it": "^13.6.9",
     "rollup": "^2.7.6",
     "rollup-plugin-sass": "^1.2.2",
     "rollup-plugin-typescript2": "^0.27.0",

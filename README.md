@@ -27,7 +27,7 @@
 
 ## Installation
 
-1. To install `reimage` use:
+1. To install `Reimage` use:
 
 **npm**
 

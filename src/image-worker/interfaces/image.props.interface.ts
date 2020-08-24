@@ -1,4 +1,4 @@
-import { reactNode } from './types';
+import { reactNode, element } from './types';
 
 export interface ImagePropsInterface extends Partial<HTMLImageElement> {
   src: any;
@@ -14,8 +14,8 @@ export interface ImagePropsInterface extends Partial<HTMLImageElement> {
   errorImage?: string;
   altAsError?: boolean;
   grayscale?: number;
-
-  root?: string;
+  alt?: string;
+  root?: element;
   rootMargin?: string;
   threshold?: number; // from 0 to 1
 }
