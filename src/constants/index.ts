@@ -11,6 +11,6 @@ export const STYLES = {
   }
 };
 export const CLASS_NAMES = {
-  transparent_default: 'transparent_default',
-  backdrop_default: 'backdrop_default',
+  transparent_default: 'transparent-default',
+  backdrop_default: 'backdrop-default',
 };

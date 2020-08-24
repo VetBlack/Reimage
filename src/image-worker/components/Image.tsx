@@ -106,9 +106,8 @@ class Reimage extends React.Component<
 
     if (checkElementType(wrapper)) {
       const wrapped = React.createElement(
-        wrapper as any,
+        wrapper as string,
         { className: wrapperClass },
-        {},
         img,
       );
       return wrapped;
