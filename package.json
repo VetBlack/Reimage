@@ -28,7 +28,14 @@
     "images",
     "picture",
     "lazy",
-    "load"
+    "load",
+    "reactjs",
+    "img",
+    "image",
+    "loader",
+    "fallback",
+    "placeholder",
+    "image placeholder"
   ],
   "author": "Vitalii Cherniavskyi",
   "license": "MIT",
@@ -77,5 +84,8 @@
     "tslint": "^6.1.2",
     "tslint-config-prettier": "^1.18.0",
     "typescript": "^3.8.3"
+  },
+  "dependencies": {
+    "rollup-plugin-uglify": "^6.0.4"
   }
 }

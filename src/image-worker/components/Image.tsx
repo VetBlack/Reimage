@@ -5,10 +5,11 @@ import { ImagePropsInterface } from '../interfaces/image.props.interface';
 import { checkElementType } from '../../utils/main';
 import { ERRORS, STYLES, CLASS_NAMES } from '../../constants/index';
 import {
-  generateClassName,
-  chooseSrc,
+  // generateClassName,
+  // chooseSrc,
   generateFilter,
   checkObserverSupport,
+  generateAttributes,
 } from '../../utils/main';
 import './image.style.scss';
 
@@ -33,7 +34,7 @@ import './image.style.scss';
 class Reimage extends React.Component<
   ImagePropsInterface,
   ImageComponentState
-> {
+  > {
   constructor(
     public props: ImagePropsInterface,
     public observer: IntersectionObserver,
@@ -43,9 +44,7 @@ class Reimage extends React.Component<
     super(props);
     this.state = {
       isLoaded: false,
-      isError: false,
     };
-
     this.currentImage = React.createRef();
     this.fallbackContainer = React.createRef();
   }
@@ -54,10 +53,8 @@ class Reimage extends React.Component<
     const { isIntersecting } = img;
     const { fallbackContainer } = this;
     const { errorImage, grayscale, altAsError, alt } = this.props;
-
     if (isIntersecting) {
       const { target } = img;
-
       observer.unobserve(img.target);
       target.src = target.dataset.src;
 
@@ -132,59 +129,14 @@ class Reimage extends React.Component<
 
   public render(): JSX.Element {
     const {
-      src,
-      alt,
-      classNames,
-      height,
-      width,
-      grayscale,
-      backDropColor,
-      minifiedSrc,
       fallbackComponent,
       fallBackWrapperStyles,
-      wrapper,
-      wrapperClass,
-      threshold,
-      errorImage,
-      altAsError,
-      backDropStyles,
-      ...rest
     } = this.props;
-
     const { isLoaded } = this.state;
-
-    const { currentSrc, blured } = chooseSrc(minifiedSrc);
-    const filter = generateFilter(grayscale, blured);
-
-    const style = {
-      height,
-      width,
-      position: 'relative',
-      filter,
-    };
-    const className =
-      classNames &&
-      generateClassName(
-        [`${!blured ? CLASS_NAMES.transparent_default : ``}`, classNames],
-        ' ',
-      );
-    const attributes = {
-      'data-src': src,
-      src: currentSrc,
-      alt,
-      style,
-      className,
-      ...rest,
-    };
-
+    const { attributes, backDropGeneratedStyle } = generateAttributes(this.props);
     return (
       <div
-        style={{
-          background: backDropColor,
-          width,
-          height,
-          ...backDropStyles,
-        }}
+        style={backDropGeneratedStyle}
         className={CLASS_NAMES.backdrop_default}
         ref={this.fallbackContainer}
       >
