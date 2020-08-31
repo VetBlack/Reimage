@@ -1,3 +1,8 @@
+import { CLASS_NAMES } from '../constants/index';
+interface Attributes {
+  [x: string]: any;
+}
+
 enum wrapperType {
   'div' = 1,
   'span',
@@ -43,3 +48,68 @@ export const checkObserverSupport = (): boolean => {
   }
   return false;
 };
+
+export const generateAttributes = ({
+  src,
+  alt,
+  classNames,
+  height,
+  width,
+  grayscale,
+  backDropColor,
+  minifiedSrc,
+  fallbackComponent,
+  fallBackWrapperStyles,
+  wrapper,
+  wrapperClass,
+  threshold,
+  errorImage,
+  altAsError,
+  backDropStyles,
+  ...rest
+}: Attributes): { backDropGeneratedStyle: object; attributes: object } => {
+  const { currentSrc, blured } = chooseSrc(minifiedSrc);
+  const filter = generateFilter(grayscale, blured);
+
+  const style = {
+    height,
+    width,
+    position: 'relative',
+    filter,
+  };
+  const className =
+    classNames &&
+    generateClassName(
+      [`${!blured ? CLASS_NAMES.transparent_default : ``}`, classNames],
+      ' ',
+    );
+
+  return {
+    attributes: {
+      'data-src': src,
+      src: currentSrc,
+      alt,
+      style,
+      className,
+      ...rest,
+    },
+    backDropGeneratedStyle: {
+      background: backDropColor,
+      width,
+      height,
+      ...backDropStyles,
+    },
+  };
+};
+
+export function changeInnerText(
+  el: HTMLElement,
+  value: string | undefined,
+): void {
+  if (value) {
+    el.innerText = value;
+    return;
+  }
+  el.innerText = '';
+  return;
+}

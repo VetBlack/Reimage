@@ -1,14 +1,13 @@
-import React from 'react';
+import React, { FunctionComponent, useState, useRef, useEffect } from 'react';
 import { reactNode } from '../interfaces/types';
-import { ImageComponentState } from '../interfaces/image.state.interface';
 import { ImagePropsInterface } from '../interfaces/image.props.interface';
 import { checkElementType } from '../../utils/main';
 import { ERRORS, STYLES, CLASS_NAMES } from '../../constants/index';
 import {
-  generateClassName,
-  chooseSrc,
   generateFilter,
   checkObserverSupport,
+  generateAttributes,
+  changeInnerText,
 } from '../../utils/main';
 import './image.style.scss';
 
@@ -30,170 +29,131 @@ import './image.style.scss';
  * @param {string} threshold - threshold for intersection observer API.
  */
 
-class Reimage extends React.Component<
-  ImagePropsInterface,
-  ImageComponentState
-> {
-  constructor(
-    public props: ImagePropsInterface,
-    public observer: IntersectionObserver,
-    public currentImage: React.RefObject<HTMLImageElement>,
-    public fallbackContainer: React.RefObject<HTMLDivElement>,
-  ) {
-    super(props);
-    this.state = {
-      isLoaded: false,
-      isError: false,
+function imageConstructor(
+  ref: object,
+  attributes: object,
+  props: ImagePropsInterface,
+): React.ReactElement {
+  const { wrapper, wrapperClass } = props;
+  const img = React.createElement('img', { ref, ...attributes });
+
+  if (checkElementType(wrapper)) {
+    const wrapped = React.createElement(
+      wrapper as string,
+      { className: wrapperClass },
+      img,
+    );
+    return wrapped;
+  }
+  return img;
+}
+
+function fallBackConstructor(
+  fallbackComponent: reactNode | undefined,
+  fallBackWrapperStyles: object | undefined,
+): React.ReactElement {
+  return React.createElement(
+    'div',
+    { style: fallBackWrapperStyles || STYLES.fallBackDefault },
+    fallbackComponent,
+  );
+}
+
+function onIntersection(
+  img: any,
+  observer: IntersectionObserver,
+  errorImage: string | undefined,
+  grayscale: number | undefined,
+  altAsError: boolean | undefined,
+  alt: string | undefined,
+  changeLoadState: (q: boolean) => void,
+  fallbackContainer: React.RefObject<HTMLDivElement>,
+): void {
+  const { isIntersecting } = img;
+  if (isIntersecting) {
+    const { target } = img;
+    observer.unobserve(img.target);
+    target.src = target.dataset.src;
+    target.onload = () => {
+      target.style.filter = generateFilter(grayscale, false);
+      target.classList.remove(CLASS_NAMES.transparent_default);
+      target.removeAttribute('data-src');
+      changeLoadState(true);
     };
-
-    this.currentImage = React.createRef();
-    this.fallbackContainer = React.createRef();
-  }
-
-  public onIntersection(img: any, observer: IntersectionObserver): void {
-    const { isIntersecting } = img;
-    const { fallbackContainer } = this;
-    const { errorImage, grayscale, altAsError, alt } = this.props;
-
-    if (isIntersecting) {
-      const { target } = img;
-
-      observer.unobserve(img.target);
-      target.src = target.dataset.src;
-
-      target.onload = () => {
-        target.style.filter = generateFilter(grayscale, false);
-        target.classList.remove(CLASS_NAMES.transparent_default);
-        target.removeAttribute('data-src');
-        this.setState({ isLoaded: true });
-      };
-      target.onerror = () => {
-        this.setState({ isLoaded: true });
-        if (errorImage) {
-          return (target.src = errorImage);
-        } else if (altAsError) {
-          if (fallbackContainer.current) {
-            fallbackContainer.current.innerText = alt!;
-          }
+    target.onerror = () => {
+      changeLoadState(true);
+      if (errorImage) {
+        return (target.src = errorImage);
+      } else if (altAsError) {
+        if (fallbackContainer.current != null) {
+          changeInnerText(fallbackContainer.current, alt);
         }
-        return (target.style.display = 'none');
-      };
-    }
+      }
+      return (target.style.display = 'none');
+    };
   }
+}
 
-  public componentDidMount(): void {
-    const { threshold, root, rootMargin } = this.props;
+const Reimage: FunctionComponent<ImagePropsInterface> = (
+  props: ImagePropsInterface,
+) => {
+  const [isLoaded, setIsLoaded] = useState<boolean>(false);
+  const currentImage = useRef<HTMLImageElement>(null);
+  const fallbackContainer = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const {
+      threshold,
+      root,
+      rootMargin,
+      errorImage,
+      grayscale,
+      altAsError,
+      alt,
+    } = props;
+    let observer: IntersectionObserver;
     const options: IntersectionObserverInit = { threshold, root, rootMargin };
     if (checkObserverSupport()) {
-      this.observer = new IntersectionObserver(entries => {
+      observer = new IntersectionObserver(entries => {
         entries.forEach(entree => {
-          this.onIntersection.call(this, entree, this.observer);
+          onIntersection(
+            entree,
+            observer,
+            errorImage,
+            grayscale,
+            altAsError,
+            alt,
+            setIsLoaded,
+            fallbackContainer,
+          );
         });
       }, options);
 
-      const { current } = this.currentImage;
+      const { current } = currentImage;
+
       if (current) {
-        this.observer.observe(current);
+        observer.observe(current!);
       }
     } else {
       throw new Error(ERRORS.support);
     }
-  }
-
-  public imageConstructor(ref: object, attributes: object): React.ReactElement {
-    const { wrapper, wrapperClass } = this.props;
-    const img = React.createElement('img', { ref, ...attributes });
-
-    if (checkElementType(wrapper)) {
-      const wrapped = React.createElement(
-        wrapper as string,
-        { className: wrapperClass },
-        img,
-      );
-      return wrapped;
-    }
-    return img;
-  }
-
-  public fallBackConstructor(
-    fallbackComponent: reactNode | undefined,
-    fallBackWrapperStyles: object | undefined,
-  ): JSX.Element {
-    return (
-      <div style={fallBackWrapperStyles || STYLES.fallBackDefault}>
-        {fallbackComponent}
-      </div>
-    );
-  }
-
-  public componentWillUnmount(): void {
-    this.observer.disconnect();
-  }
-
-  public render(): JSX.Element {
-    const {
-      src,
-      alt,
-      classNames,
-      height,
-      width,
-      grayscale,
-      backDropColor,
-      minifiedSrc,
-      fallbackComponent,
-      fallBackWrapperStyles,
-      wrapper,
-      wrapperClass,
-      threshold,
-      errorImage,
-      altAsError,
-      backDropStyles,
-      ...rest
-    } = this.props;
-
-    const { isLoaded } = this.state;
-
-    const { currentSrc, blured } = chooseSrc(minifiedSrc);
-    const filter = generateFilter(grayscale, blured);
-
-    const style = {
-      height,
-      width,
-      position: 'relative',
-      filter,
+    return () => {
+      observer.disconnect();
     };
-    const className =
-      classNames &&
-      generateClassName(
-        [`${!blured ? CLASS_NAMES.transparent_default : ``}`, classNames],
-        ' ',
-      );
-    const attributes = {
-      'data-src': src,
-      src: currentSrc,
-      alt,
-      style,
-      className,
-      ...rest,
-    };
-
-    return (
-      <div
-        style={{
-          background: backDropColor,
-          width,
-          height,
-          ...backDropStyles,
-        }}
-        className={CLASS_NAMES.backdrop_default}
-        ref={this.fallbackContainer}
-      >
-        {!isLoaded &&
-          this.fallBackConstructor(fallbackComponent, fallBackWrapperStyles)}
-        {this.imageConstructor(this.currentImage, attributes)}
-      </div>
-    );
-  }
-}
+  }, []);
+  const { attributes, backDropGeneratedStyle } = generateAttributes(props);
+  const { fallbackComponent, fallBackWrapperStyles } = props;
+  return (
+    <div
+      style={backDropGeneratedStyle}
+      className={CLASS_NAMES.backdrop_default}
+      ref={fallbackContainer}
+    >
+      {!isLoaded &&
+        fallBackConstructor(fallbackComponent, fallBackWrapperStyles)}
+      {imageConstructor(currentImage, attributes, props)}
+    </div>
+  );
+};
 
 export { Reimage };

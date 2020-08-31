@@ -79,7 +79,8 @@ Live demo available [here](https://codesandbox.io/s/hardcore-flower-l7kjp?file=/
 
 **Blured image loading**
 
-To have blured image loading you have to create minified copy of your image and pass it in the component.
+To have blured image placeholder when loading, you have to pass image to minifiedSrc prop.
+For better UX use minified low quality copies of the original image. 
 
 ```
 import React from 'react'
@@ -132,7 +133,7 @@ export default function BackdropColored() {
 
 **Handling error on image loading**
 
-If your image not loaded for some reason you can handle this in several ways
+If your image not loaded for some reason you can handle this in several ways:
 
 1) Specify ```errorImage``` and show image,
 
