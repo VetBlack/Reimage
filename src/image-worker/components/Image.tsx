@@ -7,7 +7,7 @@ import {
   generateFilter,
   checkObserverSupport,
   generateAttributes,
-  changeInnerText
+  changeInnerText,
 } from '../../utils/main';
 import './image.style.scss';
 
@@ -29,7 +29,11 @@ import './image.style.scss';
  * @param {string} threshold - threshold for intersection observer API.
  */
 
-function imageConstructor(ref: object, attributes: object, props: ImagePropsInterface): React.ReactElement {
+function imageConstructor(
+  ref: object,
+  attributes: object,
+  props: ImagePropsInterface,
+): React.ReactElement {
   const { wrapper, wrapperClass } = props;
   const img = React.createElement('img', { ref, ...attributes });
 
@@ -55,7 +59,6 @@ function fallBackConstructor(
   );
 }
 
-
 function onIntersection(
   img: any,
   observer: IntersectionObserver,
@@ -64,7 +67,8 @@ function onIntersection(
   altAsError: boolean | undefined,
   alt: string | undefined,
   changeLoadState: Function,
-  fallbackContainer: React.RefObject<HTMLDivElement>): void {
+  fallbackContainer: React.RefObject<HTMLDivElement>,
+): void {
   const { isIntersecting } = img;
   if (isIntersecting) {
     const { target } = img;
@@ -82,7 +86,7 @@ function onIntersection(
         return (target.src = errorImage);
       } else if (altAsError) {
         if (fallbackContainer.current != null) {
-          changeInnerText(fallbackContainer.current, alt)
+          changeInnerText(fallbackContainer.current, alt);
         }
       }
       return (target.style.display = 'none');
@@ -90,19 +94,38 @@ function onIntersection(
   }
 }
 
-const Reimage: FunctionComponent<ImagePropsInterface> = (props: ImagePropsInterface) => {
+const Reimage: FunctionComponent<ImagePropsInterface> = (
+  props: ImagePropsInterface,
+) => {
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
-  const currentImage = useRef<HTMLImageElement>(null)
-  const fallbackContainer = useRef<HTMLDivElement>(null)
+  const currentImage = useRef<HTMLImageElement>(null);
+  const fallbackContainer = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const { threshold, root, rootMargin, errorImage, grayscale, altAsError, alt } = props;
+    const {
+      threshold,
+      root,
+      rootMargin,
+      errorImage,
+      grayscale,
+      altAsError,
+      alt,
+    } = props;
     let observer: IntersectionObserver;
     const options: IntersectionObserverInit = { threshold, root, rootMargin };
     if (checkObserverSupport()) {
       observer = new IntersectionObserver(entries => {
         entries.forEach(entree => {
-          onIntersection(entree, observer, errorImage, grayscale, altAsError, alt, setIsLoaded, fallbackContainer);
+          onIntersection(
+            entree,
+            observer,
+            errorImage,
+            grayscale,
+            altAsError,
+            alt,
+            setIsLoaded,
+            fallbackContainer,
+          );
         });
       }, options);
 
@@ -116,10 +139,10 @@ const Reimage: FunctionComponent<ImagePropsInterface> = (props: ImagePropsInterf
     }
     return () => {
       observer && observer.disconnect();
-    }
+    };
   }, []);
   const { attributes, backDropGeneratedStyle } = generateAttributes(props);
-  const { fallbackComponent, fallBackWrapperStyles } = props
+  const { fallbackComponent, fallBackWrapperStyles } = props;
   return (
     <div
       style={backDropGeneratedStyle}
@@ -130,7 +153,7 @@ const Reimage: FunctionComponent<ImagePropsInterface> = (props: ImagePropsInterf
         fallBackConstructor(fallbackComponent, fallBackWrapperStyles)}
       {imageConstructor(currentImage, attributes, props)}
     </div>
-  )
-}
+  );
+};
 
 export { Reimage };

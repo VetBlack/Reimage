@@ -32,7 +32,7 @@ export const generateFilter = (
 ): string =>
   `${grayscale ? `grayscale(${grayscale})` : ``} ${
     blur ? `blur(5px)` : ``
-    }`.trim();
+  }`.trim();
 
 export const checkObserverSupport = (): boolean => {
   const observer: string = 'IntersectionObserver';
@@ -67,7 +67,7 @@ export const generateAttributes = ({
   altAsError,
   backDropStyles,
   ...rest
-}: Attributes): { backDropGeneratedStyle: object, attributes: object } => {
+}: Attributes): { backDropGeneratedStyle: object; attributes: object } => {
   const { currentSrc, blured } = chooseSrc(minifiedSrc);
   const filter = generateFilter(grayscale, blured);
 
@@ -91,22 +91,25 @@ export const generateAttributes = ({
       alt,
       style,
       className,
-      ...rest
+      ...rest,
     },
     backDropGeneratedStyle: {
       background: backDropColor,
       width,
       height,
       ...backDropStyles,
-    }
+    },
   };
 };
 
-export function changeInnerText(el: HTMLElement, value: string | undefined): void {
+export function changeInnerText(
+  el: HTMLElement,
+  value: string | undefined,
+): void {
   if (value) {
     el.innerText = value;
     return;
   }
-  el.innerText = ''
-  return
+  el.innerText = '';
+  return;
 }
