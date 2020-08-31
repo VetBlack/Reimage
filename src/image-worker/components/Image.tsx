@@ -133,5 +133,4 @@ const Reimage: FunctionComponent<ImagePropsInterface> = (props: ImagePropsInterf
   )
 }
 
-
 export { Reimage };
