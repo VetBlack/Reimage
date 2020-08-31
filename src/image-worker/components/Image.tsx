@@ -138,7 +138,7 @@ const Reimage: FunctionComponent<ImagePropsInterface> = (
       throw new Error(ERRORS.support);
     }
     return () => {
-      observer && observer.disconnect();
+      observer.disconnect();
     };
   }, []);
   const { attributes, backDropGeneratedStyle } = generateAttributes(props);
