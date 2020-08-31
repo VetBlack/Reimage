@@ -66,7 +66,7 @@ function onIntersection(
   grayscale: number | undefined,
   altAsError: boolean | undefined,
   alt: string | undefined,
-  changeLoadState: Function,
+  changeLoadState: (q: boolean) => void,
   fallbackContainer: React.RefObject<HTMLDivElement>,
 ): void {
   const { isIntersecting } = img;
