@@ -2,14 +2,6 @@ import { CLASS_NAMES } from '../constants/index';
 interface Attributes {
   [x: string]: any;
 }
-// interface AttributesOutput {
-//   currentSrc: string;
-//   blured: boolean;
-//   filter: string;
-//   style: object;
-//   className: string;
-//   attributes: object;
-// }
 
 enum wrapperType {
   'div' = 1,
@@ -75,7 +67,7 @@ export const generateAttributes = ({
   altAsError,
   backDropStyles,
   ...rest
-}: Attributes): any => {
+}: Attributes): { backDropGeneratedStyle: object, attributes: object } => {
   const { currentSrc, blured } = chooseSrc(minifiedSrc);
   const filter = generateFilter(grayscale, blured);
 
@@ -109,3 +101,12 @@ export const generateAttributes = ({
     }
   };
 };
+
+export function changeInnerText(el: HTMLElement, value: string | undefined): void {
+  if (value) {
+    el.innerText = value;
+    return;
+  }
+  el.innerText = ''
+  return
+}
