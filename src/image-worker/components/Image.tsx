@@ -47,7 +47,7 @@ function imageConstructor(ref: object, attributes: object, props: ImagePropsInte
 function fallBackConstructor(
   fallbackComponent: reactNode | undefined,
   fallBackWrapperStyles: object | undefined,
-): JSX.Element {
+): React.ReactElement {
   return React.createElement(
     'div',
     { style: fallBackWrapperStyles || STYLES.fallBackDefault },
