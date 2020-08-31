@@ -1,7 +1,5 @@
 import sass from 'rollup-plugin-sass';
 import typescript from 'rollup-plugin-typescript2';
-import { uglify } from "rollup-plugin-uglify";
-
 import pkg from "./package.json";
 
 export default {
@@ -18,7 +16,6 @@ export default {
   plugins: [
     sass({ insert: true }),
     typescript({ objectHashIgnoreUnknownHack: true }),
-    uglify({ compress: true, mangle: true })
   ],
   external: ['react', 'react-dom']
 }
