@@ -84,7 +84,7 @@
     "eslint-plugin-react-hooks": "^4.1.0",
     "jest": "^25.4.0",
     "prettier": "^1.19.1",
-    "release-it": "^13.6.9",
+    "release-it": "^15.6.0",
     "rollup": "^2.7.6",
     "rollup-plugin-sass": "^1.2.2",
     "rollup-plugin-terser": "^7.0.1",
