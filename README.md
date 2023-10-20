@@ -11,7 +11,6 @@
  <img alt="issues" src="https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Fgithub.com%2FVetBlack%2FReimage" />
 </p>
 
-[Reimage docs in russian](README_RU.md)
 
 **Reimage** is a react library for comfortable working with images and improvement of user experience. Basically **Reimage** is all you need,because it supports all default image attributes, and provides many new useful features such as:
 
