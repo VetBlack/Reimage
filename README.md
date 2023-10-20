@@ -12,12 +12,12 @@
 </p>
 
 
-**Reimage** is a react library for comfortable working with images and improvement of user experience. Basically **Reimage** is all you need,because it supports all default image attributes, and provides many new useful features such as:
+**Reimage** is a react library for comfortable working with images and improvement of user experience. Basically **Reimage** is all you need, because it supports all default image attributes, and provides many new useful features such as:
 
 - Image lazy loading,
 - Customizable visibility threshold,
 - Handling broken images,
-- Fallback components, spinners support on image loading,
+- Fallback components, and spinners support image loading,
 - Styling and customization, 
 
 **Reimage** also can be used in third-party sliders, galleries etc. 
@@ -76,21 +76,21 @@ Live demo available [here](https://codesandbox.io/s/hardcore-flower-l7kjp?file=/
 
 ## Cookbook
 
-**Blured image loading**
+**Blurred image loading**
 
-To have blured image placeholder when loading, you have to pass image to minifiedSrc prop.
-For better UX use minified low quality copies of the original image. 
+To have a blurred image placeholder when loading, you have to pass the image to the minifiedSrc prop.
+For better UX use minified low-quality copies of the original image. 
 
 ```
 import React from 'react'
 import Reimage from 'reimage';
 import * as minifiedImage from './path/to/minified;' // importing minified image
 
-export default function Blured() {
+export default function Blurred() {
   return (
     <Reimage
     crossOrigin='anonymous'
-    src={src}                          // can be url or imported image
+    src={src}                          // can be URL or imported image
     width={400}
     height={500}
     minifiedSrc={minifiedTest}         // pass minifiedImage to component            
@@ -106,7 +106,7 @@ export default function Blured() {
 
 **Colored backdrop on image loading**
 
-To have colored backdrop on load you just have to specify color you want in prop ```backDropColor```.
+To have a coloured backdrop on the load you just have to specify color you want in prop ```backDropColor```.
 
 ```
 import React from 'react'
@@ -132,13 +132,13 @@ export default function BackdropColored() {
 
 **Handling error on image loading**
 
-If your image not loaded for some reason you can handle this in several ways:
+If your image is not loaded for some reason you can handle this in several ways:
 
 1) Specify ```errorImage``` and show image,
 
-2) Specify ```altAsError``` and show text from alt attribute as error in image container.
+2) Specify ```altAsError``` and show text from the alt attribute as an error in the image container.
 
->**Note**: Don`t choose two error handling methods at the same time. ```errorImage``` have more priority then ```altAsError```, so when checked both showed will be only ```errorImage```.
+>**Note**: Don`t choose two error-handling methods at the same time. ```errorImage``` have more priority then ```altAsError```, so when checked both showed will be only ```errorImage```.
 
 ```
 import React from 'react'
@@ -196,20 +196,20 @@ export default function BackdropColored() {
 Prop name               | Type                                           | Details
 ---                     | ---                                            | ---
 `src`                   | *string or base64Image*                        | **REQUIRED** prop, specifies source of image.
-`classNames`            | *string*                                       | String of provided class names (best separate with space).
+`classNames`            | *string*                                       | String of provided class names (best separated with space).
 `minifiedSrc`           | *string or base64Image*                        | Source of minified image.
 `fallbackComponent`     | *DOM element or ReactNode*                     | Fallback showed when image loading.
 `fallBackWrapperStyles` | *Object*                                       | Styles for `fallbackComponent` wrapper.
 `backDropColor`         | *String*                                       | Specifies backDrop color.
 `backDropStyles`        | *Object*                                       | Specifies backDrop styles.
-`wrapper`               | *string specified*                             | Creates inner wrapper for image, have 3 possible values: div, span, p.
+`wrapper`               | *string specified*                             | Creates inner wrapper for image, has 3 possible values: div, span, p.
 `wrapperClass`          | *string*                                       | Add provided className to wrapper.
-`errorImage`            | *string or base64Image*                        | Specifies image showed if image provided in src not loaded.
-`altAsError`            | *boolean*                                      | Show alt text as error in image container.
+`errorImage`            | *string or base64Image*                        | Specifies the image shown if the image provided in src is not loaded.
+`altAsError`            | *boolean*                                      | Show alt text as an error in the image container.
 `grayscale`             | *boolean*                                      | Make image black and white colored.
 `root`                  | *string*                                       | Specified element that is used as the viewport for checking visibility of the target.
-`rootMargin`            | *string*                                       | Margin around the root. similar to css "10px 10px 10px 10px". Used to create gap before loading image
-`threshold`             | *number*                                       | Can be number or percentage defines how much root should be showed before start loading image.
+`rootMargin`            | *string*                                       | Margin around the root. similar to css "10px 10px 10px 10px". Used to create a gap before loading image
+`threshold`             | *number*                                       | Can be number or percentage defines how many roots should be shown before starting loading image.
 
 In addition to provided props you can use default image attributes such as alt, crossOrigin etc.
 
