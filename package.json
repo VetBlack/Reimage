@@ -46,7 +46,7 @@
     "!**/*.test.js",
     "*.d.ts"
   ],
-  "author": "Vitalii Cherniavskyi",
+  "author": "Vitalii Chernyavskyi",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/VetBlack/Reimage/issues"

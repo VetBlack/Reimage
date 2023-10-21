@@ -105,3 +105,9 @@ dist
 
 # Ignore build
 /lib
+
+#vscode 
+.vscode
+
+#yarn
+yarn.lock
