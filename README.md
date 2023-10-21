@@ -3,7 +3,6 @@
 <p align="center">
  <img alt="issues" src="https://img.shields.io/github/license/VetBlack/Reimage" />
  <img alt="issues" src="https://img.shields.io/github/languages/top/Vetblack/Reimage" />
- <img alt="issues" src="https://img.shields.io/snyk/vulnerabilities/npm/reimage" />
  <img alt="issues" src="https://img.shields.io/bundlephobia/min/reimage" />
  <img alt="issues" src="https://img.shields.io/github/stars/VetBlack/Reimage" />
  <img alt="issues" src="https://img.shields.io/github/forks/VetBlack/Reimage" />
