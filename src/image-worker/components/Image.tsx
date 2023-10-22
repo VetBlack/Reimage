@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'React';
+import React, { useState, useRef, useEffect } from 'react';
 import { ERRORS, CLASS_NAMES } from '../../constants/index';
 import { checkObserverSupport, generateAttributes } from '../../utils/main';
 import './image.style.scss';
@@ -27,9 +27,6 @@ const Reimage = (props: ImagePropsInterface) => {
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
   const currentImage = useRef<HTMLImageElement>(null);
   const fallbackContainer = useRef<HTMLDivElement>(null);
-
-  console.log('LINKED');
-
   useEffect(() => {
     const {
       threshold,

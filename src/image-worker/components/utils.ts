@@ -1,4 +1,4 @@
-import React from 'React';
+import React from 'react';
 import { STYLES, CLASS_NAMES } from '../../constants/index';
 import {
   checkElementType,

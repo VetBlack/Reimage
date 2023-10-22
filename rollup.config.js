@@ -19,5 +19,5 @@ export default {
     typescript({ objectHashIgnoreUnknownHack: false }),
     terser(),
   ],
-  external: ['React', 'react-dom'],
+  external: ['react', 'react-dom'],
 };
