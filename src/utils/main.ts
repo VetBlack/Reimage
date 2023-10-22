@@ -1,4 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { CLASS_NAMES } from '../constants/index';
+
 interface Attributes {
   [x: string]: any;
 }
@@ -19,11 +21,11 @@ export const generateClassName = (
 
 export const chooseSrc = (
   minSrc: string | undefined,
-): { currentSrc: string; blured: boolean } => {
+): { currentSrc: string; blurred: boolean } => {
   if (minSrc) {
-    return { currentSrc: minSrc, blured: true };
+    return { currentSrc: minSrc, blurred: true };
   }
-  return { currentSrc: '', blured: false };
+  return { currentSrc: '', blurred: false };
 };
 
 export const generateFilter = (
@@ -68,8 +70,8 @@ export const generateAttributes = ({
   backDropStyles,
   ...rest
 }: Attributes): { backDropGeneratedStyle: object; attributes: object } => {
-  const { currentSrc, blured } = chooseSrc(minifiedSrc);
-  const filter = generateFilter(grayscale, blured);
+  const { currentSrc, blurred } = chooseSrc(minifiedSrc);
+  const filter = generateFilter(grayscale, blurred);
 
   const style = {
     height,
@@ -80,7 +82,7 @@ export const generateAttributes = ({
   const className =
     classNames &&
     generateClassName(
-      [`${!blured ? CLASS_NAMES.transparent_default : ``}`, classNames],
+      [`${!blurred ? CLASS_NAMES.transparent_default : ``}`, classNames],
       ' ',
     );
 

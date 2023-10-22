@@ -1,7 +1,7 @@
 import sass from 'rollup-plugin-sass';
 import typescript from 'rollup-plugin-typescript2';
-import pkg from "./package.json";
-import { terser } from "rollup-plugin-terser";
+import pkg from './package.json';
+import { terser } from 'rollup-plugin-terser';
 
 export default {
   input: 'src/index.ts',
@@ -11,13 +11,13 @@ export default {
       format: 'cjs',
       exports: 'named',
       sourcemap: true,
-      strict: false
-    }
+      strict: false,
+    },
   ],
   plugins: [
     sass({ insert: true }),
-    typescript({ objectHashIgnoreUnknownHack: true }),
-    terser()
+    typescript({ objectHashIgnoreUnknownHack: false }),
+    terser(),
   ],
-  external: ['react', 'react-dom']
-}
+  external: ['react', 'react-dom'],
+};

@@ -1,21 +1,18 @@
-import { reactNode, element } from './types';
-
 export interface ImagePropsInterface extends Partial<HTMLImageElement> {
-  src: any;
+  src: string;
   classNames?: string;
-
   minifiedSrc?: string;
-  fallbackComponent?: reactNode;
+  fallbackComponent?: React.ReactNode;
   fallBackWrapperStyles?: object;
   backDropColor?: string;
   backDropStyles?: object;
-  wrapper?: reactNode;
+  wrapper?: React.ReactNode;
   wrapperClass?: string;
   errorImage?: string;
   altAsError?: boolean;
   grayscale?: number;
   alt?: string;
-  root?: element;
+  root?: Element | null;
   rootMargin?: string;
-  threshold?: number; // from 0 to 1
+  threshold?: number;
 }

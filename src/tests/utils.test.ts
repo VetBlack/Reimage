@@ -21,7 +21,7 @@ describe('Tests for [UTILS] functions', () => {
   });
   it('[chooseSrc] should return [output]', () => {
     const result = chooseSrc('srcExample');
-    const output = { currentSrc: 'srcExample', blured: true };
+    const output = { currentSrc: 'srcExample', blurred: true };
     expect(result).toEqual(output);
   });
   it('[generateFilter] should return [output]', () => {
